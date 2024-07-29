@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Assignment Submission Command-Line Tool</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Main -->
+      <div id="main">
+        <div class="inner">
+          <!-- Header -->
+          <header id="header">
+            <a href="index.html" class="logo"> Homepage </a>
+          </header>
+
+          <!-- Content -->
+          <section>
+            <header class="main">
+              <h1>Assignment Submission <br />Command-Line Tool</h1>
+            </header>
+
+            <p>
+              This project is an assignment submission command-line tool similar
+              to Gradescope. Leveraging AWS services such as S3, RDS, Lambda
+              functions, and API Gateway, the serverless architecture will
+              streamline homework submission and grading processes for both
+              instructors and students.
+            </p>
+
+            <h2>Key Features</h2>
+            <ul>
+              <li>Student, teacher, and assignment creation</li>
+              <li>Submission uploads/downloads</li>
+              <li>Grading functionality</li>
+              <li>Grade distribution showcase</li>
+              <li>Leaderboard generation</li>
+            </ul>
+
+            <h2>Software Architecture</h2>
+            <ul>
+              <li>
+                <strong>AWS Lambda Functions:</strong> For serverless compute
+                power to handle application logic.
+              </li>
+              <li>
+                <strong>API Gateway:</strong> To create and manage scalable APIs
+                for interaction with our application.
+              </li>
+              <li>
+                <strong>S3 (Simple Storage Service):</strong> For storing and
+                retrieving homework submission files.
+              </li>
+              <li>
+                <strong>RDS (Relational Database Service):</strong> To manage a
+                MySQL database. Keep track of students and teachers info, posted
+                homework, submissions, and grades.
+              </li>
+              <li>
+                <strong>Python:</strong> Utilized for both server-side Lambda
+                functions and client-side development.
+              </li>
+              <li>
+                <strong>Server-Side Focus:</strong> Prioritize server-side
+                processing for efficient data management, omitting a frontend
+                interface and using terminal interactions.
+              </li>
+            </ul>
+
+            <span class="image main"
+              ><img
+                src="Assignment Submission Command-Line Tool/structure.jpg"
+                alt="Aining Li"
+            /></span>
+
+            <h2>Database</h2>
+            <span class="image main"
+              ><img
+                src="Assignment Submission Command-Line Tool/database.png"
+                alt="Aining Li"
+            /></span>
+
+            <h2>API Functions</h2>
+            <ul>
+              <li>
+                <strong>PUT /create_a_student:</strong> Create a new student and
+                retrieve their ID.
+              </li>
+              <li>
+                <strong>PUT /create_a_teacher:</strong> Create a new teacher and
+                retrieve their ID.
+              </li>
+              <li>
+                <strong>POST /homework:</strong> Create a new homework
+                assignment and retrieve its ID.
+              </li>
+              <li>
+                <strong>GET /all_homeworks:</strong> Retrieve a list of all
+                homework assignments.
+              </li>
+              <li>
+                <strong>GET /homework/{homework_id}:</strong> Retrieve details
+                of a specific homework assignment.
+              </li>
+              <li>
+                <strong>GET /submission/{student_id}:</strong> Retrieve grades
+                for all assignments of a specific student.
+              </li>
+              <li>
+                <strong>GET /submission/download/{submission_id}:</strong>
+                Download PDFs from a specific submission.
+              </li>
+              <li>
+                <strong>GET /a_submission/{submission_id}:</strong> Retrieve
+                details of a specific submission.
+              </li>
+              <li>
+                <strong>GET /leaderboard:</strong> Retrieve a leaderboard based
+                on student average grades.
+              </li>
+              <li>
+                <strong>GET /grade_distribution/{homework_id}:</strong> Retrieve
+                grade distribution for a specific homework assignment.
+              </li>
+              <li>
+                <strong>PUT /submission/grade/{submissionId}:</strong> Grade and
+                provide feedback for a submission.
+              </li>
+              <li><strong>POST /submission:</strong> Submit homework PDFs.</li>
+            </ul>
+
+            <h2>Design Choices</h2>
+            <ul>
+              <li>
+                Users select a student or teacher role to access relevant
+                features.
+              </li>
+              <li>No login required; flexible access to submission details.</li>
+              <li>
+                Multiple submissions per homework; one grade per submission.
+              </li>
+              <li>
+                Use the latest grade for the submission if graded multiple
+                times.
+              </li>
+              <li>
+                Leaderboard based on average grades of all students across all
+                submissions.
+              </li>
+            </ul>
+
+            <h2>Difficulties</h2>
+            <ul>
+              <li>
+                Iterative adjustments were necessary for refining the database
+                and API structures, despite initial planning.
+              </li>
+              <li>
+                Managing edge cases and handling invalid input IDs demanded
+                careful consideration.
+              </li>
+              <li>
+                Challenges in collaboration arose. Database and lambda functions
+                reside in Helen's AWS account, restricting Aining's database
+                access. Additionally, the VSCode Live Share we used to
+                facilitate client-side development is glitchy.
+              </li>
+            </ul>
+
+            <h2>Future Work</h2>
+            <ul>
+              <li>
+                Optimize the database by removing redundant data, such as
+                homework_id and student_id in the Grades table.
+              </li>
+              <li>
+                Implement user registration and authentication to bolster
+                security.
+              </li>
+              <li>
+                Restrict access to submission details, such as grades and
+                feedback, to logged-in users for enhanced privacy.
+              </li>
+              <li>
+                Enhance the client-side interface to improve user experience.
+              </li>
+              <li>
+                Expand file type support to include formats like txt and zip for
+                broader compatibility.
+              </li>
+            </ul>
+
+            <h2>Development Team</h2>
+            <p>
+              This tool was developed in collaboration with Helen. We worked
+              closely together to design the overall database structure and API
+              functions. Our approach involved dividing the work based on
+              specific API functions, allowing us to both contribute to the
+              client and server aspects of the project.
+            </p>
+
+            <h2>Demo</h2>
+            <video controls>
+              <source
+                src="Assignment Submission Command-Line Tool/demo.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support the video tag.
+            </video>
+          </section>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div id="sidebar">
+        <div class="inner">
+          <!-- Search -->
+          <!-- <section id="search" class="alt">
+            <form method="post" action="#">
+              <input type="text" name="query" id="query" placeholder="Search" />
+            </form>
+          </section> -->
+
+          <!-- Menu -->
+          <!-- <nav id="menu">
+            <header class="major">
+              <h2>Menu</h2>
+            </header>
+            <ul>
+              <li><a href="index.html">Homepage</a></li>
+              <li><a href="generic.html">Generic</a></li>
+              <li><a href="elements.html">Elements</a></li>
+              <li><a href="project.html">Project</a></li>
+              <li>
+                <span class="opener">Submenu</span>
+                <ul>
+                  <li><a href="#">Lorem Dolor</a></li>
+                  <li><a href="#">Ipsum Adipiscing</a></li>
+                  <li><a href="#">Tempus Magna</a></li>
+                  <li><a href="#">Feugiat Veroeros</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Etiam Dolore</a></li>
+              <li><a href="#">Adipiscing</a></li>
+              <li>
+                <span class="opener">Another Submenu</span>
+                <ul>
+                  <li><a href="#">Lorem Dolor</a></li>
+                  <li><a href="#">Ipsum Adipiscing</a></li>
+                  <li><a href="#">Tempus Magna</a></li>
+                  <li><a href="#">Feugiat Veroeros</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Maximus Erat</a></li>
+              <li><a href="#">Sapien Mauris</a></li>
+              <li><a href="#">Amet Lacinia</a></li>
+            </ul>
+          </nav> -->
+
+          <!-- Section -->
+          <!-- <section>
+            <header class="major">
+              <h2>Ante interdum</h2>
+            </header>
+            <div class="mini-posts">
+              <article>
+                <a href="#" class="image"
+                  ><img src="images/pic07.jpg" alt=""
+                /></a>
+                <p>
+                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
+                  dolore aliquam.
+                </p>
+              </article>
+              <article>
+                <a href="#" class="image"
+                  ><img src="images/pic08.jpg" alt=""
+                /></a>
+                <p>
+                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
+                  dolore aliquam.
+                </p>
+              </article>
+              <article>
+                <a href="#" class="image"
+                  ><img src="images/pic09.jpg" alt=""
+                /></a>
+                <p>
+                  Aenean ornare velit lacus, ac varius enim lorem ullamcorper
+                  dolore aliquam.
+                </p>
+              </article>
+            </div>
+            <ul class="actions">
+              <li><a href="#" class="button">More</a></li>
+            </ul>
+          </section> -->
+
+          <!-- Section -->
+          <section>
+            <header class="major">
+              <h2>Let's Connect!</h2>
+            </header>
+            <p>
+              I'd love to hear from you. Feel free to check out my resume,
+              connect with me on LinkedIn or GitHub, or email me to discuss
+              opportunities or projects.
+            </p>
+            <ul class="contact">
+              <li class="icon solid fa-file">
+                <a href="Resume.pdf">Resume</a>
+              </li>
+              <li class="icon brands fa-linkedin">
+                <a href="https://www.linkedin.com/in/aining-li/"
+                  >linkedin.com/in/aining-li/</a
+                >
+              </li>
+              <li class="icon brands fa-github">
+                <a href="https://github.com/Annie-LAN">github.com/Annie-LAN</a>
+              </li>
+              <li class="icon solid fa-envelope">
+                <a href="mailto:ainingbehappy@gmail.com"
+                  >ainingbehappy@gmail.com</a
+                >
+              </li>
+            </ul>
+          </section>
+
+          <!-- Footer -->
+          <footer id="footer">
+            <p class="copyright">
+              &copy; Aining Li. All rights reserved. Design:
+              <a href="https://html5up.net">HTML5 UP</a>.
+            </p>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

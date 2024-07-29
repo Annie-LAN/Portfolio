@@ -3105,3 +3105,8 @@ button:disabled,
   margin-top: 0;
   padding-top: 0;
 }
+
+video {
+  width: 100%; /* Makes video responsive */
+  height: auto;
+}
