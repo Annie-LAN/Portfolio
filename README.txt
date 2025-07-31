@@ -1,4 +1,4 @@
-Live at https://ainingli.fun/
+Live at https://annie-lan.github.io/Portfolio/
 Private notes: https://www.notion.so/1-Portfolio-Website-0d6545b10fbe460c91facf623d4faa13
 
 Credits:
